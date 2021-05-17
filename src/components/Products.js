@@ -1,6 +1,7 @@
 import React , { useState, useEffect } from 'react';
 import {Card, CardContent, CardMedia, CardActions, Button} from '@material-ui/core';
 import {useCart }from '../context/CartContext';
+import { useHistory } from 'react-router-dom';
 
 export default function Products({ beer }) {
     //State for onClick button management : if product is added to cart, display remove button and so on
@@ -11,6 +12,11 @@ export default function Products({ beer }) {
     const { addProducts } = useCart();
     //Remove products from localstorage array
     const { removeProducts } = useCart();
+    //On click see details, push to details route with item id
+    const history = useHistory();
+    function seeDetails(id) {
+        history.push(`/details/${id}`)
+    };
 
     function addToCart(item) {
         addProducts(item);
@@ -44,7 +50,7 @@ export default function Products({ beer }) {
                     <h3> Vol: {beer.volume.value} {beer.volume.unit} </h3>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" onClick={() => seeDetails(beer.id)}>
                         See details
                     </Button>
                 </CardActions>
