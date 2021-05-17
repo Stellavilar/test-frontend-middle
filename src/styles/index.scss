@@ -1,0 +1,33 @@
+// Import google font
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+//Colors
+$grey: #d7d3cf;
+$yellow: #f7e542;
+
+body {
+  margin: 0;
+  font-family: 'Comfortaa', cursive;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+//Desktop version
+header {
+  height: 60px;
+  padding: 5px 20px;
+  border-bottom: 1px solid $grey;
+  background-color: $yellow;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  img{
+    width: 120px;
+  }
+
+  .cart-icon {
+    display: flex;
+    align-items: center;
+  }
+}
