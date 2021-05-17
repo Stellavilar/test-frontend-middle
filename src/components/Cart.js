@@ -1,8 +1,15 @@
 import React from 'react';
 import {Card, CardContent, CardMedia, CardActions, Button} from '@material-ui/core';
 import { useCart } from '../context/CartContext';
+import {useHistory} from 'react-router';
 
 function CartItem ({ beer }) {
+    //On click see details, push to details route with item id
+    const history = useHistory();
+    function seeDetails(id) {
+        history.push(`/details/${id}`)
+    };
+
     return (
         <article>
             <Card >
@@ -14,7 +21,7 @@ function CartItem ({ beer }) {
                     <h2> {beer.name} </h2>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" onClick={() => seeDetails(beer.id)}>
                         See details
                     </Button>
                 </CardActions>
