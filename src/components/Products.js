@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React , { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -9,6 +9,8 @@ import {useCart }from '../context/CartContext';
 export default function Products({ beer }) {
     //State for onClick button management : if product is added to cart, display remove button and so on
     const [ added, setAdded ] = useState(false);
+    //Get cart array stored into localStorage:
+    const { cartContents } = useCart();
     //Add products into cart and save it into localStorage;
     const { addProducts } = useCart();
 
@@ -21,6 +23,15 @@ export default function Products({ beer }) {
     function removeFromCart() {
         setAdded(false);
     };
+
+    useEffect(() => {
+        //Management of the button and style state if the item is added to cart or not
+        if(cartContents.find( x => x.id === beer.id)) {
+            //Find item into localstorage array by its id
+            return setAdded(true)
+        }
+        return setAdded(false)
+    }, [cartContents, beer]);
 
     return (
         <article>
