@@ -4,17 +4,22 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
+import {useCart }from '../context/CartContext';
 
 export default function Products({ beer }) {
     //State for onClick button management : if product is added to cart, display remove button and so on
     const [ added, setAdded ] = useState(false);
+    //Add products into cart and save it into localStorage;
+    const { addProducts } = useCart();
 
-    function addToCart() {
-        setAdded(false);
+    function addToCart(item) {
+        addProducts(item);
+        console.log(localStorage.getItem('cart'))
+        setAdded(true);
     };
 
     function removeFromCart() {
-        setAdded(true);
+        setAdded(false);
     };
 
     return (
@@ -37,8 +42,8 @@ export default function Products({ beer }) {
                     </Button>
                 </CardActions>
                 { added ? 
-                <Button variant="contained" color="secondary" onClick={addToCart}>REMOVE FROM CART</Button> :
-                <Button variant="contained" color="primary" onClick={removeFromCart}>ADD TO CART</Button>
+                <Button variant="contained" color="secondary" onClick={removeFromCart}>REMOVE FROM CART</Button> :
+                <Button variant="contained" color="primary" onClick={() => addToCart(beer)}>ADD TO CART</Button>
                 }
             </Card>
         </article>

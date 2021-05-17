@@ -13,9 +13,16 @@ export const CartProvider = ({ children }) => {
     //State for the cart that will be saved into localStorage thanks to useLocalStorage middleware
     const [ cartContents, dispatch ] = useLocalStorage('cart', []);
 
+    //Add products into cart:
+    function addProducts(items) {
+        dispatch( prevCart => {
+            return [...prevCart, items];
+        });
+    };
+
     return (
         <CartDispatchContext.Provider value={dispatch}>
-            <CartStateContext.Provider value={{cartContents}} >
+            <CartStateContext.Provider value={{cartContents, addProducts}} >
                 {/* App component goes here */}
                 {children}
             </CartStateContext.Provider>
