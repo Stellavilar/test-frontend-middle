@@ -34,10 +34,8 @@ export default function Details() {
         } else {
             //If the id is not present into the cart, the card has not been added to the cart
             return setAdded(false) 
-        }
-    }
-
-
+        };
+    };
    },[id, cartContents]);
 
     return (

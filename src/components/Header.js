@@ -3,6 +3,7 @@ import logo from '../img/logo.png';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import Search from './Search';
 
 export default function Header() {
     //Get array with cart contents stored into localStorage
@@ -14,7 +15,7 @@ export default function Header() {
                 <img src={logo} alt="logo" />
             </Link>
             <div className="search">
-                search input
+                <Search />
             </div>
             <Link to="/cart">
                 <div className="cart-icon">
