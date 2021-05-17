@@ -20,9 +20,21 @@ export const CartProvider = ({ children }) => {
         });
     };
 
+    //Remove products from cart:
+    function removeProducts(index) {
+        dispatch(prevCart => {
+            //Get cart array:
+            const newArray = [...prevCart];
+            //Find index product into cart array by its id, then remove it
+            const removeIndex = newArray.map((item) => { return item.id }).indexOf(index);
+            newArray.splice(removeIndex, 1);
+            return newArray;
+        });
+    };
+
     return (
         <CartDispatchContext.Provider value={dispatch}>
-            <CartStateContext.Provider value={{cartContents, addProducts}} >
+            <CartStateContext.Provider value={{cartContents, addProducts, removeProducts}} >
                 {/* App component goes here */}
                 {children}
             </CartStateContext.Provider>

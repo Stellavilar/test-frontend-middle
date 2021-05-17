@@ -9,15 +9,15 @@ export default function Products({ beer }) {
     const { cartContents } = useCart();
     //Add products into cart and save it into localStorage;
     const { addProducts } = useCart();
+    //Remove products from localstorage array
+    const { removeProducts } = useCart();
 
     function addToCart(item) {
         addProducts(item);
-        console.log(localStorage.getItem('cart'))
-        setAdded(true);
     };
 
-    function removeFromCart() {
-        setAdded(false);
+    function removeFromCart(index) {
+        removeProducts(index)
     };
 
     useEffect(() => {
@@ -49,7 +49,7 @@ export default function Products({ beer }) {
                     </Button>
                 </CardActions>
                 { added ? 
-                <Button variant="contained" color="secondary" onClick={removeFromCart}>REMOVE FROM CART</Button> :
+                <Button variant="contained" color="secondary" onClick={() => removeFromCart(beer.id)}>REMOVE FROM CART</Button> :
                 <Button variant="contained" color="primary" onClick={() => addToCart(beer)}>ADD TO CART</Button>
                 }
             </Card>
