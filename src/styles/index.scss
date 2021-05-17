@@ -46,15 +46,18 @@ header {
 .container {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   .content {
     height: 100%;
     display: flex;
     margin: 5% 10%;
-    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
+    
     //Beer card
     article {
  
@@ -87,18 +90,56 @@ header {
           text-decoration: underline;
           text-align: center;
         }
-
-        
-
         .ingredients {
           display: flex;
           justify-content:space-between;
         }
       }
     }
-    //Pagination
-    ul {
-      margin-bottom: 50px;
-    }
   }
+
+  //Pagination
+  ul {
+    margin-bottom: 50px;
+    align-self:center;
+  }
+
+}
+
+//Mobile version
+@media screen and (max-width : 768px) {
+  header {
+    padding: 5px 10px;
+    width: 100%;
+
+      img {
+        width: 80px;
+      }
+
+      .MuiAutocomplete-root {
+        width: 150px !important;
+      }
+  }
+
+  .container {
+    height: 100%;
+    padding: 0px;
+
+    .content {
+      margin: 2% 0%;
+
+      article {
+        width: 100%;
+      
+        .MuiPaper-root{ 
+          margin:auto;
+          
+          width: 225px;
+          height: 70%;
+          margin-right: 20px;
+        }
+      }
+    } 
+  }
+
 }

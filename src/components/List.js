@@ -31,8 +31,8 @@ export default function List() {
                 { beers.map((beer, index) => 
                     <Products key={beer.id} beer={beer} index={index} />
                 )}
-                <Pagination count={9} onChange={handleChange} page={page} />
             </div>
+            <Pagination count={9} onChange={handleChange} page={page} />
         </div>
     );
 };
